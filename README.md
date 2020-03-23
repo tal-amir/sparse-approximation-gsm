@@ -11,7 +11,7 @@ Based on the paper [1].
 
 This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes
 
-**(P0)**         min _x_ ||_A_*_x_-_y_||2 s.t. ||_x_||0 <= k.  
+**(P0)**         min _x_ ||_A_*_x_-_y_||2 s.t. ||_x_||0 <= _k_.  
 
 A typical use is:  
 `>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
@@ -19,8 +19,6 @@ A typical use is:
 This program requires the Mosek optimization solver.  
 https://www.mosek.com/downloads/
 
-1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
-2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
 
 Input arguments
 ---------------
@@ -47,4 +45,7 @@ Files
 `./utils`                 - Files used by the main program. Required to be in the path.
 `./comparison`            - Files used for comparing the performance of GSM to other methods.
 
-
+References
+----------
+1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
+2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
