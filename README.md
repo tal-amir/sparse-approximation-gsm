@@ -29,7 +29,7 @@ Input arguments
 
 Output arguments
 ----------------
-`x_sol` - Estimated solution vector to the sparse apprixmation problem  
+`x_sol` - Estimated solution of (P0)
 `sol`   - A struct containing information about the solution. See documentation for details.
 
 Files
