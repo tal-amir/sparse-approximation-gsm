@@ -11,7 +11,7 @@ This program estimates a solution of the _sparse approximation_ or _best subset 
 
 (P0)         min _x_ ‖_A_*_x_-_y_‖₂ s.t. ‖_x_‖₀ ≤ _k_.  
 
-The algorithm is based on the paper [1].
+The algorithm is based on [1].
 
 A typical use is:  
 `>> [x_sol, sol] = sparse_approx_gsm(A,y,k,...);`
