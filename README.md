@@ -25,12 +25,12 @@ Input arguments
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
-`...` - name/value pairs of parameters. See documentation for details.
+`...` - name/value pairs of parameters. See documentation.
 
 Output arguments
 ----------------
 `x_sol` - Estimated solution of (P0)  
-`sol`   - A struct containing information about the solution. See documentation for details.
+`sol`   - A struct containing information about the solution. See documentation.
 
 Files
 -----
