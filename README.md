@@ -9,14 +9,12 @@ eMail: tal.amir@weizmann.ac.il
 
 Based on the paper [1].
 
-Given a vector y in R^n, matrix A in R^(n x d) and 1 < k < d, this function  
-estimates a solution of the sparse approximation or best subset selection  
-problem
+Given a vector y in R^n, matrix A in R^(n x d) and 1 < k < d, this function estimates a solution of the _sparse approximation_ or _best subset selection_ problem
 
 (P0)         min_x ||A*x-y||_2 s.t. ||x||0 <= k.  
 
 A typical use is:  
->> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);  
+`>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
 
 Input arguments
 ---------------
