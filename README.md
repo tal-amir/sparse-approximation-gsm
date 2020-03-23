@@ -7,11 +7,11 @@ Tal Amir, Ronen Basri, Boaz Nadler
 Weizmann Institute of Science  
 eMail: tal.amir@weizmann.ac.il  
 
-Based on the paper [1].
-
 This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes
 
 (P0)         min _x_ ‖_A_*_x_-_y_‖₂ s.t. ‖_x_‖₀ ≤ _k_.  
+
+The algorithm is based on the paper [1].
 
 A typical use is:  
 `>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
@@ -30,8 +30,7 @@ Input arguments
 Output arguments
 ----------------
 `x_sol` - Estimated solution vector to the sparse apprixmation problem  
-`sol`   - A struct containing information about the solution.  
-        See documentation for details.
+`sol`   - A struct containing information about the solution. See documentation for details.
 
 Files
 -----
@@ -48,4 +47,4 @@ Files
 References
 ----------
 1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
-2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
+2. Bertsimas, Copenhaver, Mazumder (2017) - The Trimmed Lasso: Sparsity and Robustness  
