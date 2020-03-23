@@ -14,7 +14,7 @@ This program estimates a solution of the _sparse approximation_ or _best subset 
 The algorithm is based on the paper [1].
 
 A typical use is:  
-`>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
+`>> [x_sol, sol] = sparse_approx_gsm(A,y,k,...);`
 
 This program requires the Mosek optimization solver.  
 https://www.mosek.com/downloads/
@@ -25,7 +25,7 @@ Input arguments
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
-`varargin` - name/value pairs of parameters. See documentation for details.
+`...` - name/value pairs of parameters. See documentation for details.
 
 Output arguments
 ----------------
