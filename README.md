@@ -29,7 +29,7 @@ Input arguments
 
 Output arguments
 ----------------
-`x_sol` - Estimated solution of (P0)
+`x_sol` - Estimated solution of (P0)  
 `sol`   - A struct containing information about the solution. See documentation for details.
 
 Files
@@ -41,7 +41,7 @@ Files
 `runExample.m`            - A script with a simple usage example  
 `runCompareTLS.m`         - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
                           
-`./utils`                 - Files used by the main program. Required to be in the path.
+`./utils`                 - Files used by the main program. Required to be in the path.  
 `./comparison`            - Files used for comparing the performance of GSM to other methods.
 
 References
