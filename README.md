@@ -5,7 +5,7 @@ Version v1.10, 23-Mar-2020
 
 Tal Amir, Ronen Basri, Boaz Nadler  
 Weizmann Institute of Science  
-eMail: tal.amir@weizmann.ac.il  
+EMail: tal.amir@weizmann.ac.il  
 
 This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes
 
@@ -24,7 +24,7 @@ Input arguments
 ---------------
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
-`k` - Target sparsity level 1 < k < d
+`k` - Target sparsity level 1 < k < d  
 `varargin` - name/value pairs of parameters. See documentation for details.
 
 Output arguments
