@@ -1,5 +1,6 @@
 # gsm-sparse-approximation
-##Sparse approximation by the Generalized Soft-Min penalty
+Sparse approximation by the Generalized Soft-Min penalty
+========================================================
 
 Version v1.10, 23-Mar-2020
 
