@@ -20,9 +20,8 @@ Input arguments
 ---------------
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
-`k` - Target sparsity level
-`varargin` - name/value pairs of parameters.  
-           See documentation for details.
+`k` - Target sparsity level  
+`varargin` - name/value pairs of parameters. See documentation for details.
 
 Output arguments
 ----------------
@@ -33,12 +32,8 @@ Output arguments
 This program requires the Mosek optimization solver.  
 https://www.mosek.com/downloads/
 
-[1] Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse  
-    Recovery Guarantees and Practical Optimization by the Generalized  
-    Soft-Min Penalty
-
-[2] Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity  
-    and Robustness  
+1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
+2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
 
 Files
 -----
@@ -47,14 +42,9 @@ Files
 `README.md`               - Readme  
 
 `runExample.m`            - A script with a simple usage example  
-`runCompareTLS.m`         - A comparison between GSM and the DC-Programming  
-                          and ADMM methods described in [2].  
-                          Requires the Yalmip modeling toolbox.  
+`runCompareTLS.m`         - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
                           
-`./utils`                 - Files used by the main program. Required to be in  
-                          the path.
-
-`./comparison`            - Files used for comparing the performance of GSM  
-                          to other methods.
+`./utils`                 - Files used by the main program. Required to be in the path.
+`./comparison`            - Files used for comparing the performance of GSM to other methods.
 
 
