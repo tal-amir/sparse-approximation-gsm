@@ -9,9 +9,9 @@ eMail: tal.amir@weizmann.ac.il
 
 Based on the paper [1].
 
-This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector **_y_**, matrix **_A_** and sparsity level _k_, find a vector **_x_** that minimizes
+This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes
 
-**(P0)**         min _**x**_ ||_**A*****x**-**y**_||2 s.t. ||_**x**_||0 <= k.  
+**(P0)**         min _x_ ||_A_*_x_-_y_||2 s.t. ||_x_||0 <= k.  
 
 A typical use is:  
 `>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
