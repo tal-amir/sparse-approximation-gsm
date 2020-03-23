@@ -16,6 +16,12 @@ Given a vector y in R^n, matrix A in R^(n x d) and 1 < k < d, this function esti
 A typical use is:  
 `>> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);`
 
+This program requires the Mosek optimization solver.  
+https://www.mosek.com/downloads/
+
+1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
+2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
+
 Input arguments
 ---------------
 `A` - Matrix of size n x d  
@@ -28,12 +34,6 @@ Output arguments
 `x_sol` - Estimated solution vector to the sparse apprixmation problem  
 `sol`   - A struct containing information about the solution.  
         See documentation for details.
-
-This program requires the Mosek optimization solver.  
-https://www.mosek.com/downloads/
-
-1. Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse Recovery Guarantees and Practical Optimization by the Generalized Soft-Min Penalty
-2. Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity and Robustness  
 
 Files
 -----
