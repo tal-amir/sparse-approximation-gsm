@@ -36,7 +36,7 @@ Files
 -----
 `sparse_approx_gsm.m`     - Main Matlab function  
 `sparse_approx_gsm.txt`   - Main documentation  
-`README.md`               - Readme  
+`README.md`               - This readme  
 
 `runExample.m`            - A script with a simple usage example  
 `runCompareTLS.m`         - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
