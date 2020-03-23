@@ -1,4 +1,3 @@
-# gsm-sparse-approximation
 Sparse approximation by the Generalized Soft-Min penalty
 ========================================================
 
@@ -10,23 +9,25 @@ eMail: tal.amir@weizmann.ac.il
 
 Based on the paper [1].
 
-Given a vector y in R^n, matrix A in R^(n x d) and 1 < k < d, this function 
-estimates a solution of the sparse approximation or best subset selection
+Given a vector y in R^n, matrix A in R^(n x d) and 1 < k < d, this function  
+estimates a solution of the sparse approximation or best subset selection  
 problem
 
 (P0)         min_x ||A*x-y||_2 s.t. ||x||0 <= k.  
 
-A typical use is:
+A typical use is:  
 >> [x_sol, sol] = sparse_approx_gsm(A,y,k,varargin);
 
-Input arguments:
+Input arguments
+---------------
 A - Matrix of size n x d
 y - Column vector in R^n
 k - Target sparsity level, 1 < k < d
 varargin - name/value pairs of parameters. 
            See documentation for details.
 
-Output arguments:
+Output arguments
+----------------
 x_sol - Estimated solution vector to the sparse apprixmation problem
 sol   - A struct containing information about the solution. 
         See documentation for details.
@@ -42,7 +43,7 @@ https://www.mosek.com/downloads/
     and Robustness
 
 Files
-=====
+-----
 sparse_approx_gsm.m     - Main Matlab function
 sparse_approx_gsm.txt   - Main documentation
 README.md               - Readme
