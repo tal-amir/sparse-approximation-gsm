@@ -34,15 +34,15 @@ Output arguments
 
 Files
 -----
-`sparse_approx_gsm.m`     - Main Matlab function  
-`sparse_approx_gsm.txt`   - Main documentation  
-`README.md`               - This readme  
+`sparse_approx_gsm_v1_10.m`    - Main Matlab function  
+`sparse_approx_gsm_v1_10.txt`  - Main documentation  
+`README.md`                    - This readme  
 
-`runExample.m`            - A script with a simple usage example  
-`runCompareTLS.m`         - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
+`runExample.m`     - A script with a simple usage example  
+`runCompareTLS.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
                           
-`./utils`                 - Files used by the main program. Required to be in the path.  
-`./comparison`            - Files used for comparing the performance of GSM to other methods.
+`./utils`       - Files used by the main program. Required to be in the path.  
+`./comparison`  - Files used for comparing the performance of GSM to other methods.
 
 References
 ----------
