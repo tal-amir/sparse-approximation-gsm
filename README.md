@@ -60,11 +60,11 @@ Files
 `sparse_approx_gsm_v1_10.txt`  - Main documentation  
 `README.md`                    - This readme  
 
-`runExample.m`     - A script with a simple usage example  
-`runCompareTLS.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires YALMIP.
+`runExample.m`              - A script with a simple usage example  
+`runCompareTrimmedLasso.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2].
                           
-`./utils`       - Files used by the main program. Required to be in the Matlab path.  
-`./comparison`  - Files required only for comparing GSM with other methods.
+`./utils`       - Used by the main program. Required to be in the Matlab path.  
+`./comparison`  - Required only for comparing GSM with other methods.
 
 References
 ----------
