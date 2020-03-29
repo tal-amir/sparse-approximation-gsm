@@ -25,6 +25,7 @@ https://www.mosek.com/downloads/
   
 Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/),  
 and is normally sent immediately by email.  
+
 The attached `mosek.lic` file should be placed in `<home>/mosek`, where  
 `<home>` is the user's home directory on the computer. For example:  
 * Windows: `c:\users\<userid>\mosek\mosek.lic`  
@@ -36,7 +37,8 @@ Then add Mosek's `toolbox/r2015aom` subdirectory to the Matlab path. e.g.,
 **YALMIP**  
 The code that compares our method with other methods requires the _YALMIP_ modeling toolbox.  
 YALMIP can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
-Then all subdirectories of YALMIP should be added to the Matlab path.  
+
+All subdirectories of YALMIP should be added to the Matlab path.  
 For example, if YALMIP is extracted to `C:\YALMIP`,  
 `>> addpath(genpath('C:\YALMIP'));`
 
