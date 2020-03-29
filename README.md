@@ -27,7 +27,7 @@ The attached `mosek.lic` file should be placed in a directory called `mosek` und
 * Windows: `c:\users\_userid_\mosek\mosek.lic`  
 * Unix / Linux / OS X: `/home/_userid_/mosek/mosek.lic`  
 
-The following Matlab command adds Mosek to the path:  
+Then, the `toolbox/r2015aom` directory should be added to the Matlab path. e.g.,
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
 The code that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
