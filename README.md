@@ -23,8 +23,10 @@ Requirements
 This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
   
-Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/), and is normally sent immediately by email.  
-The attached `mosek.lic` file should be placed in `<home>/mosek`, where `<home>` is the user's home directory on the computer. For example:  
+Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/),  
+and is normally sent immediately by email.  
+The attached `mosek.lic` file should be placed in `<home>/mosek`, where  
+`<home>` is the user's home directory on the computer. For example:  
 * Windows: `c:\users\<userid>\mosek\mosek.lic`  
 * Unix / Linux / OS X: `/home/<userid>/mosek/mosek.lic`  
 
