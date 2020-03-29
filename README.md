@@ -7,11 +7,11 @@ Tal Amir, Ronen Basri, Boaz Nadler
 Weizmann Institute of Science  
 EMail: tal.amir@weizmann.ac.il  
 
-This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes
-
+This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes  
+  
 (P0)         min _x_ ‖_A_*_x_-_y_‖₂ s.t. ‖_x_‖₀ ≤ _k_.  
-
-The algorithm is based on [1].
+  
+The algorithm is based on [1].  
 
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
@@ -23,25 +23,27 @@ This program requires the _Mosek_ optimization solver.
 https://www.mosek.com/downloads/  
   
 Mosek requires a **user licence**. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/), and is normally sent immediately by email.  
-The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory. For example:
+The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory. For example:  
 * Windows: `c:\users\_userid_\mosek\mosek.lic`  
 * Unix / Linux / OS X: `/home/_userid_/mosek/mosek.lic`  
 
-The following Matlab command adds Mosek to the path:
+The following Matlab command adds Mosek to the path:  
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
-The ode that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
-Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.
-To add Yalmip to the path:
+The code that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
+Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
+To add Yalmip to the path:  
 `>> addpath(genpath('C:\Dropbox\Temp\YALMIP'));`
 
 
 Input & output arguments
 ------------------------
+**Input:**  
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
-
+  
+**Output:**  
 `x_sol` - Estimated solution of (P0)  
 
 
