@@ -19,11 +19,11 @@ A typical use is:
 
 Requirements
 ------------
-**Mosek**:
+**Mosek**:  
 This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
   
-Mosek requires a **user licence**. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/), and is normally sent immediately by email.  
+Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/), and is normally sent immediately by email.  
 The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory. For example:  
 * Windows: `c:\users\_userid_\mosek\mosek.lic`  
 * Unix / Linux / OS X: `/home/_userid_/mosek/mosek.lic`  
@@ -31,7 +31,7 @@ The attached `mosek.lic` file should be placed in a directory called `mosek` und
 Then, the `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.g.,
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
-**Yalmip:**
+**Yalmip:**  
 The code that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
 Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
 To add Yalmip to the path:  
