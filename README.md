@@ -19,7 +19,7 @@ A typical use is:
 
 Requirements
 ------------
-**Mosek**:  
+**Mosek**  
 This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
   
@@ -31,7 +31,7 @@ The attached `mosek.lic` file should be placed in a directory called `mosek` und
 Then, the `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.g.,
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
-**Yalmip:**  
+**YALMIP**  
 The code that compares our method with other methods requires the _YALMIP_ modeling toolbox.  
 YALMIP can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
 Then all subdirectories of YALMIP should be added to the Matlab path.  
@@ -41,12 +41,12 @@ For example, if YALMIP is extracted to `C:\YALMIP`,
 
 Input & output arguments
 ------------------------
-**Input:**  
+**Input**  
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
   
-**Output:**  
+**Output**  
 `x_sol` - Estimated solution of (P0)  
 
 
