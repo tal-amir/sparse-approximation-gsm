@@ -14,10 +14,17 @@ This program estimates a solution of the _sparse approximation_ or _best subset 
 The algorithm is based on [1].
 
 A typical use is:  
-`>> [x_sol, sol] = sparse_approx_gsm(A,y,k,...);`
+`>> x_sol = sparse_approx_gsm(A,y,k);`
 
+
+Requirements
+------------
 This program requires the Mosek optimization solver.  
-https://www.mosek.com/downloads/
+https://www.mosek.com/downloads/  
+Mosek requires a user licence. A personal academic licence can be requested [here] (https://www.mosek.com/license/request/personal-academic/). The licence is normally sent immediately, by email.  
+The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory:
+Windows: `c:\users\_userid_\mosek\mosek.lic`  
+Unix / Linux/ OS X: `/home/_userid_/mosek/mosek.lic`
 
 
 Input arguments
@@ -25,7 +32,6 @@ Input arguments
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
-`...` - name/value pairs of parameters. See documentation.
 
 Output arguments
 ----------------
