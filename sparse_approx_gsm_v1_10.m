@@ -118,6 +118,9 @@ qprintln(vl, 2, '  projResNormRel = %cA*%s - y%c%c / %cy%c%c', nn, uProjx, nn, s
 qprintln(vl, 2, '      resNormRel = %cA*x - y%c%c / %cy%c%c', nn, nn, s2, nn, nn, s2);   
 qprintln(vl, 2, '            %srel = k/(n-k) * %cx - %s%c%c / %c%s%c%c', uTau, nn, uTruncx, nn, s1, nn, uTruncx, nn, s1);
 qprintln(vl,2,'');
+qprintln(vl,2,'%s_bar \t- The threshold on %s that guarantees a k-sparse solution.', uLambda, uLambda);
+qprintln(vl,2,'%s \t- k-sparse projection of x.', uTruncx);
+qprintln(vl,2,'%s\t- minimizer of %cA*u - y%c%c over the support of %s.', uProjx, nn, nn, s2, uTruncx);
 
 qprintln(vl,1);
 
@@ -351,10 +354,10 @@ while ~isempty(i_next) && (i_next <= numel(db))
         sol.stop_message = sprintf('Solution to (P_lambda) was sparse for %d consecutive times.', params.nLambdas_sparse_x_to_stop);
     elseif (i_next > numel(db)) && reached_sparsity
         sol.stop_reason = 'finished';
-        sol.stop_message = 'Finished solving for all values of lambda. Got a sparse soltuion.';
+        sol.stop_message = 'Finished solving for all values of lambda. Got a sparse solution.';
     elseif (i_next > numel(db)) && ~reached_sparsity
         sol.stop_reason = 'finished_no_sparse';
-        sol.stop_message = 'Finished solving for all values of lambda, but failed to get a sparse soltuion.';
+        sol.stop_message = 'Finished solving for all values of lambda, but failed to get a sparse solution.';
     end
 
     
@@ -449,7 +452,7 @@ while ~isempty(i_next) && (i_next <= numel(db))
     end
     
     % Report the current iteration's performance
-    qprintln(vl, 2, '%s) %s | t[s] = %s | nGammas = %s | %srel = %s | projResNormRel = %s | resNormRel = %s', ...
+    qprintln(vl, 2, '%s) %s | time = %s | nGammas = %s | %srel = %s | projResNormRel = %s | resNormRel = %s', ...
         iterStr, lambdaStr, rpad_num(tLambdaRound,5), rpad_num(dbinfo_lambda.num_gammas,4), uTau, rpad_num(tailRel_curr,num_disp_length), rpad_num(energy_P0_curr/norm(y),num_disp_length), rpad_num(resNormRel_curr,num_disp_length)); 
  
     
