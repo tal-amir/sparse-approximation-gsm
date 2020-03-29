@@ -19,12 +19,15 @@ A typical use is:
 
 Requirements
 ------------
-This program requires the Mosek optimization solver.  
+This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
-Mosek requires a user licence. A personal academic licence can be requested [here] (https://www.mosek.com/license/request/personal-academic/). The licence is normally sent immediately, by email.  
-The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory:
-Windows: `c:\users\_userid_\mosek\mosek.lic`  
-Unix / Linux/ OS X: `/home/_userid_/mosek/mosek.lic`
+  
+Mosek requires a **user licence**. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/). The licence is normally sent immediately by email.  
+The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory. For example:
+* Windows: `c:\users\_userid_\mosek\mosek.lic`  
+* Unix / Linux/ OS X: `/home/_userid_/mosek/mosek.lic`  
+
+The tests
 
 
 Input arguments
