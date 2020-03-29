@@ -13,13 +13,6 @@ This program estimates a solution of the _sparse approximation_ or _best subset 
   
 The algorithm is based on [1].  
 
-A typical use is:  
-`>> x_sol = sparse_approx_gsm(A,y,k);`
-
-The `./utils` subdirectory should be added to the Matlab path:  
-`>> addpath('./utils');`
-
-For more details, see the main documentation.
 
 Requirements
 ------------
@@ -47,8 +40,16 @@ For example, if YALMIP is extracted to `C:\YALMIP`,
 `>> addpath(genpath('C:\YALMIP'));`
 
 
-Input & output arguments
-------------------------
+Usage
+-----
+A typical use is:  
+`>> x_sol = sparse_approx_gsm(A,y,k);`
+
+The `./utils` subdirectory should be added to the Matlab path:  
+`>> addpath('./utils');`
+
+For more details, see the main documentation.
+
 **Input**  
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
