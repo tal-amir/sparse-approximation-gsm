@@ -16,6 +16,7 @@ The algorithm is based on [1].
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
 
+For more details, see the main documentation.
 
 Requirements
 ------------
