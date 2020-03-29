@@ -25,21 +25,25 @@ https://www.mosek.com/downloads/
 Mosek requires a **user licence**. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/), and is normally sent immediately by email.  
 The attached `mosek.lic` file should be placed in a directory called `mosek` under the user's home directory. For example:
 * Windows: `c:\users\_userid_\mosek\mosek.lic`  
-* Unix / Linux/ OS X: `/home/_userid_/mosek/mosek.lic`  
+* Unix / Linux / OS X: `/home/_userid_/mosek/mosek.lic`  
 
-The tests
+The following Matlab command adds Mosek to the path:
+`>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
+
+The ode that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
+Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.
+To add Yalmip to the path:
+`>> addpath(genpath('C:\Dropbox\Temp\YALMIP'));`
 
 
-Input arguments
----------------
+Input & output arguments
+------------------------
 `A` - Matrix of size n x d  
 `y` - Column vector in R^n  
 `k` - Target sparsity level 1 < k < d  
 
-Output arguments
-----------------
 `x_sol` - Estimated solution of (P0)  
-`sol`   - A struct containing information about the solution. See documentation.
+
 
 Files
 -----
