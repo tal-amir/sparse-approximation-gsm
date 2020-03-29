@@ -32,10 +32,11 @@ Then, the `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
 **Yalmip:**  
-The code that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
-Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
-To add Yalmip to the path:  
-`>> addpath(genpath('C:\Dropbox\Temp\YALMIP'));`
+The code that compares our method with other methods requires the _YALMIP_ modeling toolbox.  
+YALMIP can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
+Then all subdirectories of YALMIP should be added to the Matlab path.  
+For example, if YALMIP is extracted to `C:\YALMIP`,  
+`>> addpath(genpath('C:\YALMIP'));`
 
 
 Input & output arguments
@@ -56,10 +57,10 @@ Files
 `README.md`                    - This readme  
 
 `runExample.m`     - A script with a simple usage example  
-`runCompareTLS.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires the Yalmip modeling toolbox.  
+`runCompareTLS.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2]. Requires YALMIP.
                           
-`./utils`       - Files used by the main program. Required to be in the path.  
-`./comparison`  - Files used for comparing the performance of GSM to other methods.
+`./utils`       - Files used by the main program. Required to be in the Matlab path.  
+`./comparison`  - Files required only for comparing GSM with other methods.
 
 References
 ----------
