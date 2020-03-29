@@ -16,6 +16,9 @@ The algorithm is based on [1].
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
 
+The `./utils` subdirectory should be added to the Matlab path:  
+`>> addpath('./utils');`
+
 For more details, see the main documentation.
 
 Requirements
