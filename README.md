@@ -19,6 +19,7 @@ A typical use is:
 
 Requirements
 ------------
+**Mosek**:
 This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
   
@@ -30,6 +31,7 @@ The attached `mosek.lic` file should be placed in a directory called `mosek` und
 Then, the `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.g.,
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
+**Yalmip:**
 The code that compares our method with other methods requires the _Yalmip_ modeling toolbox.  
 Yalmip can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
 To add Yalmip to the path:  
