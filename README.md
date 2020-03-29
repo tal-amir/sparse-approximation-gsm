@@ -28,7 +28,7 @@ The attached `mosek.lic` file should be placed in a directory called `mosek` und
 * Windows: `c:\users\_userid_\mosek\mosek.lic`  
 * Unix / Linux / OS X: `/home/_userid_/mosek/mosek.lic`  
 
-Then, the `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.g.,
+The `toolbox/r2015aom` subdirectory should be added to the Matlab path. e.g.,  
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
 **YALMIP**  
