@@ -45,7 +45,7 @@ Usage
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
 
-The `./utils` subdirectory should be added to the Matlab path:  
+The `./utils` subdirectory is required in the Matlab path. To add:  
 `>> addpath('./utils');`
 
 For more details, see the main documentation.
