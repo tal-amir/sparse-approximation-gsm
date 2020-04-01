@@ -111,10 +111,17 @@ nLambdaVals
   This parameter is ignored when <lambdaVals> is set.
   Default: fast: 25, normal: 50, thorough: 100, crazy: 100
 
+lambdaRel_min
+  Positive real number
+  By default the values of lambda used for power-2 are increasing
+  exponentially in the interval [lambdaRel_min, 1+1e-4] * lambda_bar. 
+  This parameter is ignored when <lambdaVals> is defined.
+  Default: 1e-8
+
 lambdaVals
   A vector of positive numbers, or []
-  Manually sets the values of lambda. Overrides <nLambdaVals>. When left
-  empty, the values are chosen automatically.
+  Manually sets the values of lambda. Overrides <nLambdaVals> and
+  <lambdaRel_min>. When left empty, the values are chosen automatically.
   Default: []
 
 x_init

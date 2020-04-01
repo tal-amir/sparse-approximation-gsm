@@ -46,10 +46,10 @@ end
 params = processParams(varargin);
 vl = params.verbosity; % Verbosity level
 
-qprintln(vl,1,'\nSparse Approximation by the Generalized SoftMin Penalty');
-qprintln(vl,1,'Tal Amir, Ronen Basri, Boaz Nadler');
-qprintln(vl,1,'Weizmann Institute of Science');
-qprintln(vl,1,'Version %s, %s', version, version_date);
+qprintln(vl,2,'\nSparse Approximation by the Generalized SoftMin Penalty');
+qprintln(vl,2,'Tal Amir, Ronen Basri, Boaz Nadler');
+qprintln(vl,2,'Weizmann Institute of Science');
+qprintln(vl,2,'Version %s, %s', version, version_date);
 
 % Analysis of the dictionary A
 A_data = get_A_data(A,k);
@@ -351,7 +351,7 @@ while ~isempty(i_next) && (i_next <= numel(db))
         sol.stop_message = '(P0) objective reached below user stopping threshold.';
     elseif reached_consecutive_sparsity
         sol.stop_reason = 'reached_sparsity';
-        sol.stop_message = sprintf('Solution to (P_lambda) was sparse for %d consecutive times.', params.nLambdas_sparse_x_to_stop);
+        sol.stop_message = sprintf('Solution to (P_lambda) was sparse for %d consecutive values of lambda.', params.nLambdas_sparse_x_to_stop);
     elseif (i_next > numel(db)) && reached_sparsity
         sol.stop_reason = 'finished';
         sol.stop_message = 'Finished solving for all values of lambda. Got a sparse solution.';
@@ -3073,7 +3073,7 @@ else
         % progress exponentially from 10^-8 * lambda^bar * norm(y), with
         % lambda^bar as defined in the paper.
         
-        lambdaVals = exp(stepVec_pwlin(log(1e-8*(1+1e-4)*A_data.lambdaLargeMultiplier_p2*norm_y),nVals-1,log((1+1e-4)*A_data.lambdaLargeMultiplier_p2 * norm_y), nVals));
+        lambdaVals = exp(stepVec_pwlin(log(params.lambdaRel_min*A_data.lambdaLargeMultiplier_p2*norm_y),nVals-1,log((1+1e-4)*A_data.lambdaLargeMultiplier_p2 * norm_y), nVals));
         
         % Older versions
         %lambdaVals = (stepVec_tan(sqrt(1e-4*A_data.lambdaLargeMultiplier_p2*norm_y),sqrt(A_data.lambdaLargeMultiplier_p2 * norm_y), nVals)).^2;
@@ -3156,6 +3156,8 @@ defaultParams.residualPower = baseParams.residualPower;
 
 defaultParams.nLambdaVals = chooseByKeyStr(profile, ...
     'fast', 25, 'normal', 50, 'thorough', 50, 'crazy', 100); 
+
+defaultParams.lambdaRel_min = 1e-8;
 
 defaultParams.start_with_equality_constraint = false;
 defaultParams.P0_objective_stop_threshold = 0;
