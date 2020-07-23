@@ -16,8 +16,13 @@ The algorithm is based on [1].
 
 Requirements
 ------------
+**Matlab**
+This program supports Matlab 2018b and onward, but may also work on earlier versions. 
+ 
+For residual power p=2, no further software is required. For p=1, the _Mosek_ optimization solver is required.  
+The code that compares our method with other methods also requires the _YALMIP_ modeling toolbox.  
+ 
 **Mosek**  
-This program requires the _Mosek_ optimization solver.  
 https://www.mosek.com/downloads/  
   
 Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/),  
@@ -32,7 +37,6 @@ Then add Mosek's `toolbox/r2015aom` subdirectory to the Matlab path. e.g.,
 `>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
 
 **YALMIP**  
-The code that compares our method with other methods requires the _YALMIP_ modeling toolbox.  
 YALMIP can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
 
 All subdirectories of YALMIP should be added to the Matlab path.  
@@ -44,9 +48,6 @@ Usage
 -----
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
-
-The `./utils` subdirectory is required in the Matlab path. To add:  
-`>> addpath('./utils');`
 
 For more details, see the main documentation.
 
@@ -61,14 +62,13 @@ For more details, see the main documentation.
 
 Files
 -----
-`sparse_approx_gsm_v1_10.m`    - Main Matlab function  
-`sparse_approx_gsm_v1_10.txt`  - Main documentation  
+`sparse_approx_gsm_v1_21.m`    - Main Matlab function  
+`sparse_approx_gsm_v1_21.txt`  - Main documentation  
 `README.md`                    - This readme  
 
-`runExample.m`              - A script with a simple usage example  
+`runExample*.m`             - Script files with simple usage examples  
 `runCompareTrimmedLasso.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2].
                           
-`./utils`       - Used by the main program. Required to be in the Matlab path.  
 `./comparison`  - Required only for comparing GSM with other methods.
 
 References
