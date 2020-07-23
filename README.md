@@ -19,7 +19,7 @@ Requirements
 **Matlab**  
 This program supports Matlab 2018b and onward, but may work with earlier versions. 
   
-The code that compares our method with other methods requires the _Mosek_ optimization solver and the _YALMIP_ modeling toolbox.  
+To compare our method with other methods, the _Mosek_ optimization solver and _YALMIP_ modeling toolbox are required.  
  
 **Mosek**  
 https://www.mosek.com/downloads/  
@@ -48,7 +48,7 @@ Usage
 A typical use is:  
 `>> x_sol = sparse_approx_gsm(A,y,k);`
 
-For more details, see the main documentation.
+For more details, see the usage example scripts or the main documentation.
 
 **Input**  
 `A` - Matrix of size n x d  
