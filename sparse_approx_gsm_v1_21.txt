@@ -1,0 +1,417 @@
+          Sparse Approximation by the Generalized SoftMin Penalty
+          =======================================================
+
+Version v1.21, 23-Jul-2020
+
+Tal Amir, Ronen Basri, Boaz Nadler
+Weizmann Institute of Science
+
+EMail: tal.amir@weizmann.ac.il
+
+Based on the paper [1].
+
+Given an n x d matrix A, a vector y in R^n and sparsity level k <= n,
+estimates a solution to the sparse approximation problem
+
+(P0)                  min_x  ||A*x-y||_2  s.t.  ||x||_0 <= k.
+
+Usage:
+>> [x_sol, sol] = sparse_approx_gsm(A, y, k, ...);
+
+Input arguments:
+A - Matrix of size n x d
+y - Column vector in R^n
+k - Target sparsity level, 1 < k < n
+... - Optional parameters given in name / value pairs. Details appear below.
+
+Output arguments:
+x_sol - Estimated solution to Problem (P0)
+sol   - A struct containing side information about the solution
+
+
+Usage examples
+==============
+
+Basic usage:
+>> x_sol = sparse_approx_gsm(A,y,k);
+
+For larger problems:
+>> x_sol = sparse_approx_gsm(A,y,k,'profile','fast');
+
+For a more thorough computation:
+>> x_sol = sparse_approx_gsm(A,y,k,'profile','thorough');
+
+
+Method overview
+===============
+
+Prob. (P0) is approached by estimating a solution to the trimmed-lasso [2] relaxation
+
+        min_x  F_lambda(x) := (1/p)*||A*x-y||^p + lambda * tau_k(x),
+
+where p = 1 or 2, for several values of lambda. Each objective F_lambda(x) is minimized by 
+minimizing the soft surrogate
+
+      min_x  F_{lambda,gamma}(x) := (1/p)*||A*x-y||^p + lambda * tau_{k,gamma}(x)
+
+for an increasing sequence of gammas, where tau_{k,gamma}(x) is the generaized soft-min
+penalty [1]. In turn, for each gamma, F_{lambda,gamma}(x) is minimized by solving a 
+sequence of convex weightd l1-problems
+
+              min_x F_{lambda,w}(x) := (1/p)*||A*x-y||^p + lambda * <w, abs(x)>.
+
+For further details, see [1].
+
+[1] Tal Amir, Ronen Basri, Boaz Nadler (2020) - The Trimmed Lasso: Sparse
+    Recovery Guarantees and Practical Optimization by the Generalized
+    Soft-Min Penalty
+
+[2] Bertsimas, Copenhaver, Mazumder (2017) - The trimmed Lasso: Sparsity
+    and Robustness
+
+[3] Beck, Teboulle (2009) - A fast iterative shrinkage-thresholding algorithm for
+    linear inverse problems
+
+[4] The Mosek optimization toolbox for Matlab.
+    https://www.mosek.com
+
+[5] Johan Lofberg (2004) - YALMIP: A toolbox for modeling and optimization in MATLAB
+    https://yalmip.github.io
+
+
+Parameters
+==========
+
+General parameters
+------------------
+
+profile
+  'fast' / 'normal' / 'thorough' / 'ultra' 
+  Each profile applies a different set of predefined parameters. 
+  Default: 'normal'
+  
+  fast: Recommended for large problems (d = several tens of thousands or more).
+        Uses 3 lambda values, looser thresholds and a fast strategy to escape ambiguous
+        points.
+
+  normal: Recommended for moderately-sized problems (d = several thousands to tens of 
+          thousands).
+          Uses 10 lambda values, stricter thresholds and a more thorough strategy to 
+          escape ambiguous points.
+
+  thorough: Recommended for small problems (d up to several tousands)
+            Uses 31 lambda values. Augments the algorithm by an OMP post-processing step.
+
+  ultra: The most thorough profile.
+         Uses 37 lambda values. Uses yet stricter thresholds.
+
+verbosity
+  Output verbosity level.
+  0 - Quiet
+  1 - Summary only
+  2 - Summary and report for each lambda (default)
+  3 - Summary, report for each lambda and report violations
+  4 - All of the above, including warnings on each call to external solver
+      that results in numerical problems.
+
+
+Parameters related to (P0)
+--------------------------
+
+residualPower
+  {1, 2}
+  The power p to be used for the residual norm of the unconstrained relaxation
+               min x  F_lambda(x) = (1/p)*||Ax-y||^p + lambda*tau_k(x)
+  Default: 2
+
+P0_objective_stop_threshold
+  Early stopping threshold. Makes the algorithm stop when finding a k-sparse solution x
+  such that
+            ||A*Pi_k(x) - y||_2 <= <P0_objective_stop_threshold>.
+  Default: 0
+
+nLambdaVals
+  Integer >= 2
+  Number of lambda values to be used for minimizing F_lambda(x)
+  This parameter is ignored when <lambdaVals> is set.
+  Default: fast: 3, normal: 10, thorough: 31, ultra: 43
+
+lambdaRel_min
+  Positive real number
+  When <residualPower> = 2, the lambda values are chosen to increase exponentially from 
+  (<lambdaRel_min> * lambda_bar) to lambda_bar, where lambda_bar is a threshold that
+  guarantees that if lambda > lambda_bar, then any local minimum of F_lambda(x) is 
+  k-sparse. See [1], [2] for more details.
+  This parameter is ignored when <lambdaVals> is set.
+  Default: fast: 1e-2, normal: 1e-3, thorough: 1e-5, ultra: 1e-7
+
+lambdaVals
+  A vector of positive numbers, or []
+  Manually sets lambda values, overriding their default definition by <nLambdaVals>
+  and <lambdaRel_min>. When left empty, the values are chosen automatically.
+  Default: []
+
+lambdaRelVals
+  A vector of positive numbers, or []
+  Similar to <lambdaVals>, but relative to lambda_bar. When this vector is defined, each
+  lambda_i is set to lambda_bar * lambdaRel_i. This is more convenient than setting
+  <lambdaVals> since these values do not require calculating lambda_bar manually, and any
+  lambdaRel greater than 1 is guaranteed to yield a sparse solution.
+  Default: []
+
+nLambdas_sparse_x_to_stop
+  Positive integer
+  When the obtained local minimizer of F_lambda(x) is k-sparse for
+  <nLambdas_sparse_x_to_stop> consecutive lambda values, the algorithm stops without
+  running with more lambdas. Use inf to disable.
+  See <sparsityThreshAbs_x>.
+  Default: fast: 1, normal: 1, thorough: 2, ultra: 3
+
+
+Parameters related to F_lambda(x)
+---------------------------------
+
+x_init
+  n x 1 sized vector, or []
+  To be used as initialization during the optimization.
+  Note: When <init_x_from_previous_lambda> = true, x_init is only used in the first value
+  of lambda.
+  See <init_x_from_previous_lambda>, <full_homotopy_with_init>
+  Default: []
+
+init_x_from_previous_lambda
+  Logical
+  When minimizing F_lambda(x), this parameter tells whether to use the solution
+  obtained for the previous lambda as initialization. This overrides
+  <x_init>, except for the first value of gamma.
+  See <x_init>, <full_homotopy_with_init>
+  Default: false
+
+full_homotopy_with_init
+  Logical
+  When minimizing F_lambda(x) with initialization, either perform a full 
+  homotopy over gamma in [0,inf], or start the homotopy at the smallest
+  gamma for which F_{k,gamma}(x_init) <= F_{k,gamma}(x_l), where xl is the
+  obtained solution for gamma=0.  
+  Default: false
+  See <x_init>, <init_x_from_previous_lambda>
+
+gamma_first_max_difference_of_sums
+  Positive number
+  This parameter helps determine the value of gamma_1. Let x_0 be the
+  obtained solution of (P_lambda,gamma) with gamma_0 = 0. Then gamma_1 is
+  chosen such that
+      Delta_k(gamma_1 * abs(x_0)) = <gamma_first_max_difference_of_sums>,
+  where Delta_k(z) is the difference between the sum of maximal (d-k) entries
+  and minimal (d-k) entries of z. This ensures that approximately
+  max_i w^i_{k,gamma_1}(x) <= (1 + <gamma_first_max_difference_of_sums>) *
+      min_i w^i_{k,gamma_1}(x).
+  Default: 1e-4
+
+gamma_binary_search_uncertainty_ratio
+  When using binary search over gamma, this search is stopped when the ratio between the
+  large gamma and small gamma is below <gamma_binary_search_uncertainty_ratio>.
+  Default: fast: 1.1, normal: 1.1, thorough: 1.02, ultra: 01
+
+gamma_growth_factors
+  A vector of increasing positive numbers. 
+  After minimizing F_{lambda,gamma}(x), gamma is increased by one of the factors given in
+  this vector. Once every <gamma_test_every_n_iters> gammas, the solution is tested for 
+  its proximity to the previous solution. If they are very close, gamma is increased by
+  the next larger factor in <gamma_growth_factors>. 
+  See also <gamma_test_every_n_iters>.
+  Default: fast:     [1.03, 1.1, 1.2, 1.5]
+           normal:   [1.02, 1.1, 1.2, 1.5]
+           thorough: [1.02, 1.1, 1.2, 1.5]
+           ultra:    [1.01, 1.1, 1.2, 1.5]
+
+gamma_test_every_n_iters
+  Positive integer. See <gamma_growth_factors>.
+  Default: 10
+
+gamma_test_counter_init
+  Positive integer. Value to initialize the counter used in <gamma_test_every_n_iters>.
+  See <gamma_test_every_n_iters> and <gamma_growth_factors>.
+  Default: 9
+
+gamma_test_maximal_x_distance_abs
+  Positive number. See <gamma_test_every_n_iters>
+  Deault: 1e-6
+
+gamma_test_maximal_x_distance_rel
+  Positive number. See <gamma_test_every_n_iters>
+  Deault: 1e-6
+
+w_diff_thresh_to_keep_increasing_gamma
+  Positive number
+  During the homotopy, after solving each subproblem (P_lambda,gamma),
+  gamma_t is increased to gamma_{t+1} by multiplying with
+  <gamma_growth_factor> at least once. To speed up
+  the process, this multiplication is done repeatedly as long as
+      || w_{k,gamma_{t+1}}(x_t) -  w_{k,gamma_t}(x_t) ||_inf <=
+       (d-k)/d * <w_diff_thresh_to_keep_increasing_gamma>.
+  Default: fast: 1e-2 normal: 1e-3 thorough: 1e-4 ultra: 1e-4
+
+nGammas_sparse_x_to_stop
+  Positive integer
+  During the homotopy, if the obtained minimum of F_{lambda,gamma_r}(x) is
+  k-sparse and with the same support for <nGammas_sparse_x_to_stop>
+  consecutive values gamma_r, the homotopy moves directly to gamma=inf and
+  then terminates.
+  See <sparsityThreshAbs_x>.
+  Default: fast: 2, normal: 3, thorough: 5, ultra: 10
+
+nGammas_sparse_w_to_stop
+  Positive integer
+  When the weight vector w_{k,gamma_t}(x_t) is (d-k)-sparse for
+  <nGammas_sparse_w_to_stop> consecutive values of t, the algorithm sets
+  gamma to infinity, minimizes F_{lambda,inf}(x) and then stops.
+  See <sparsityThreshAbs_w>.
+  Default: fast: 2, normal: 2, thorough: 4, ultra: 6
+
+gamma_over_lambda_upper_bound
+  Upper bound for gamma/lambda. When gamma/lambda reaches above this threshold, gamma is 
+  set to inf.
+  Suppose that <gamma_over_lambda_upper_bound> = (1/delta) * log(nchoosek(d,k)) / (0.5*norm(y)^2).
+  Then we are guaranteed that if gamma >= lambda * gamma_over_lambda_upper_bound,
+  F_k(x) <= F_{k,gamma}(x) <= F_k(x) + delta * F_k(0)
+  for any x.
+  Default: 1e16 * log(nchoosek(d,k)) / (0.5*norm(y)^2);
+
+nGammaVals_max
+  Positive integer
+  Maximal number of gamma values to be used for minimizing F_lambda(x). If that value is
+  surpassed, gamma is set to infinity and a final instance of F_{lambda,gamma}(x) is 
+  solved.
+  Default: 10000
+
+
+Parameters related to F_{lambda,gamma}(x)
+-----------------------------------------
+
+Flg_minimal_decrease
+  Positive number
+  When minimizing F_{lambda,gamma}(x), if for several consecutive iterations the objective
+  F_{lambda,gamma}(x^t) does not lose at least this fraction of its value, convergence is
+  assumed and the iterations stop. The exact condition is
+        F_{lambda,gamma}(x^{t-1}) - F_{lambda,gamma}(x^t) <=
+              F_{lambda,gamma}(x^{t-1}) * <Flg_minimal_decrease>,
+  and the iterations stop when it is satisfied for n consecutive times.
+  n is given by <Flg_num_small_decreases_for_stopping> when gamma is finite
+  and by <Flg_num_small_decreases_for_stopping_on_infinite_gamma> when
+  gamma = inf.
+  Default: fast: 1e-2, normal: 1e-3, thorough: 1e-4, ultra: 1e-5
+
+Flg_minimal_decrease_immediate
+  Positive number
+  Similar to <Flg_minimal_decrease>, but when the decrease is below this
+  threshold, the iterations stop immediately.
+  Default: 1e-6
+
+Flg_num_small_decreases_for_stopping
+  Positive integer
+  See <Flg_minimal_decrease>.
+  Default: fast: 2, normal: 2, thorough: 2, ultra: 3
+
+Flg_num_small_decreases_for_stopping_on_infinite_gamma
+  Positive integer
+  See <Flg_minimal_decrease>.
+  Default: fast: 3, normal: 5, thorough: 6, ultra: 6
+
+Flg_max_num_mm_iters
+  Positive integer
+  Maximal number of iterations when minimizing F_{lambda,gamma}(x).
+  Default: 1000
+
+
+Parameters related to F_{lambda,w}(x)
+-------------------------------------
+
+solver
+  'fista' / 'mosek' / 'yalmip'
+  Tells which solver to use for minimizing each weighted l1 objctive F_{lambda,w}(x).
+  fista:  The fast iterative shrinkage algorithm of Beck, Teboulle [3].
+  mosek:  The Mosek optimization solver [4].
+  yalmip: The Yalmip modelling toolbox [5]. See also <yalmip_settings>. 
+
+  The fastest option is FISTA, but it is only supports <residualPower> = 2.
+  Default: For <redisualPower> = 2, 'fista' is the default. For <residualPower> = 1, if
+  mosek is detected, it is used by default. Otherwise, yalmip is the default.
+
+yalmip_settings
+  Settings to pass to YALMIP when <solver>='yalmip'.
+  Default: []
+
+Flw_fista_minimal_decrease
+  Similar to <Flg_minimal_decrease>, but for the objective F_{lambda,w}(x).
+  Default: fast / normal: 1e-5, thorough / ultra: 1e-6  
+
+fista_monitor_decrease_every_nIter
+  Determines how many gradient steps to perform before each calculation of the objective 
+  F_{lambda,w}(x). 
+  Default: 3
+
+Flw_fista_num_small_decreases_for_stopping
+  If the decrease of the objective F_{lambda,w}(x) is small for this number of consecutive
+  times, the FISTA algorithm stops.
+  Default: fast: 2, normal: 2, thorough: 3, ultra: 4
+
+nIterMax_fista
+  Maximal number of FISTA gradient steps to use for minimizing each objective
+  F_{lambda,w}(x).
+  Default: 20000
+
+
+Escaping ambiguous points and postprocessing
+--------------------------------------------
+
+escape_ambiguous_points
+  An ambiguous point is a vector x whose k largest-magnitude entries are not uniquely 
+  determined. If the output of the algorithm to minimize F_lambda(x) is ambiguous, it is
+  not guaranteed to be a local minimum. See [1] for further details. Practically, this 
+  was only observed to happen with x that is s-sparse for some s < k. 
+  When the boolean parameter <escape_ambiguous_points> is set to true, whenever the 
+  homotopy scheme reaches a k-sparse solution, it tries to improve it by other means than
+  minimizing F_{lambda,gamma}(x). See also <ambiguous_escape_strategy>.
+  Default: true
+
+ambiguous_escape_strategy
+  'gradient' / 'ls'. See also <escape_ambiguous_points>.
+  Gradient: When reaching a k-sparse solution, try to improve it by replacing the k'th 
+            smallest magnitude entry of x by the largest magnitude entry of the gradient of 
+            F_lambda(x) (excluding entries that belong to the support of x). A least squares problem
+            is then solved using these entries.
+  Least Squares: When reaching a k-sparse solution, test each entry that does not belong
+                 to the suppot of x as a replacement for the k-th largest magnitude 
+                 entry of x. For each such option, a least-squares problem is solved and
+                 the entry that yields the smallest F_lambda(x) is chosen. This yields
+                 better solutions that the gradient strategy, but at the cost of solving
+                 d-k least-squares problems of size n x k whenever a k-sparse solution is
+                 reached. This can somewhat slow down the algorithm when d is very large.
+  See [1] for more details.
+  Default: fast: gradient, normal / thorough / ultra: ls
+
+postprocess_by_omp
+  Boolean. If set to true, after minimizing each F_lambda(x), the solution is refined by
+  a greedy OMP-like process, where for each max(k-r,0) <= s <= k, the s largest-magnitude
+  entries of x are chosen, and completed by OMP. r is given by
+  <omp_max_num_atoms_to_complete>. This may improve the solution in some cases, but
+  requires solving an order of k*d least-squares problems of size n x k for each value
+  of lambda. This can significantly slow down the algorithm when d is large.
+  See also <omp_max_num_atoms_to_complete>.
+  Default: fast / normal: false, thorough / ultra: true
+
+omp_max_num_atoms_to_complete
+  Integer between 0 and inf.
+  Number of entries to try to complete by OMP after minimizing each F_lambda(x).
+  Only relevant when <postprocess_by_omp> = true.
+  Default: fast: 3, normal: 5, thorough: 10, ultra: inf
+  
+Other parameters
+----------------
+
+maxNumThreads
+  Maximal number of threds to allow mosek to use when optimizing. Only relevant when
+  <solver> = 'mosek'.
+  Default: 2
+
