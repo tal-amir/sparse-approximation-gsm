@@ -21,7 +21,7 @@ end
 params = {'profile', 'thorough', 'verbosity',0, ...
     'lambdaVals', lambda};
 
-[~, sol] = sparse_approx_gsm_v1_10(A, y, k, params);
+[~, sol] = sparse_approx_gsm_v1_21(A, y, k, params);
 
 x_sol = sol.db(end).x;
 
@@ -36,7 +36,7 @@ params = {'profile', 'thorough', 'verbosity',0, ...
     'init_x_from_previous_lambda', true, ...
     'full_homotopy_with_init', true};
 
-[~, sol2] = sparse_approx_gsm_v1_10(A, y, k, params);
+[~, sol2] = sparse_approx_gsm_v1_21(A, y, k, params);
 
 x_sol_2 = sol2.db(end).x;
 
