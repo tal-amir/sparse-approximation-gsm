@@ -16,7 +16,7 @@ The algorithm is based on [1].
 
 Requirements
 ------------
-**Matlab** 
+**Matlab**  
 This program supports Matlab 2018b and onward, but may work with earlier versions. 
  
 For residual power p=2 (default), no further software is required. Using p=1 requires the _Mosek_ optimization solver.  
