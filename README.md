@@ -1,7 +1,7 @@
 Sparse approximation by the Generalized Soft-Min penalty
 ========================================================
 
-Version 1.10, 23-Mar-2020
+Version 1.21, 23-Jul-2020
 
 Tal Amir, Ronen Basri, Boaz Nadler  
 Weizmann Institute of Science  
@@ -16,11 +16,11 @@ The algorithm is based on [1].
 
 Requirements
 ------------
-**Matlab**
-This program supports Matlab 2018b and onward, but may also work on earlier versions. 
+**Matlab** 
+This program supports Matlab 2018b and onward, but may work with earlier versions. 
  
-For residual power p=2, no further software is required. For p=1, the _Mosek_ optimization solver is required.  
-The code that compares our method with other methods also requires the _YALMIP_ modeling toolbox.  
+For residual power p=2 (default), no further software is required. Using p=1 requires the _Mosek_ optimization solver.  
+The code that compares our method with other methods requires _Mosek_ as well as the _YALMIP_ modeling toolbox.  
  
 **Mosek**  
 https://www.mosek.com/downloads/  
@@ -69,7 +69,8 @@ Files
 `runExample*.m`             - Script files with simple usage examples  
 `runCompareTrimmedLasso.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2].
                           
-`./comparison`  - Required only for comparing GSM with other methods.
+`./gsm`  - Required in the matlab path. 
+`./comparison`  - Required only for comparing GSM with other methods. 
 
 References
 ----------
