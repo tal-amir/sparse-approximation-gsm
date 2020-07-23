@@ -18,9 +18,8 @@ Requirements
 ------------
 **Matlab**  
 This program supports Matlab 2018b and onward, but may work with earlier versions. 
- 
-For residual power p=2 (default), no further software is required. Using p=1 requires the _Mosek_ optimization solver.  
-The code that compares our method with other methods requires _Mosek_ as well as the _YALMIP_ modeling toolbox.  
+  
+The code that compares our method with other methods requires the _Mosek_ optimization solver and the _YALMIP_ modeling toolbox.  
  
 **Mosek**  
 https://www.mosek.com/downloads/  
@@ -69,7 +68,7 @@ Files
 `runExample*.m`             - Script files with simple usage examples  
 `runCompareTrimmedLasso.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2].
                           
-`./gsm`  - Required in the matlab path. 
+`./gsm`  - Required in the matlab path.  
 `./comparison`  - Required only for comparing GSM with other methods. 
 
 References
