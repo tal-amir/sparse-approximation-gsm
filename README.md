@@ -17,9 +17,10 @@ The algorithm is based on [1].
 Requirements
 ------------
 **Matlab**  
-This program supports Matlab 2018b and onward, but may work with earlier versions. 
+This program supports Matlab 2018b and onward, but may work with earlier versions.  
+For most use cases, no further software is required.
   
-To compare our method with other methods, the _Mosek_ optimization solver and _YALMIP_ modeling toolbox are required.  
+To run the code that compares our method with other methods, the _Mosek_ optimization solver and _YALMIP_ modeling toolbox are required.  
  
 **Mosek**  
 https://www.mosek.com/downloads/  
