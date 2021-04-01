@@ -9,7 +9,7 @@ EMail: tal.amir@weizmann.ac.il
 
 This program estimates a solution of the _sparse approximation_ or _best subset selection_ problem: Given a vector _y_, matrix _A_ and sparsity level _k_, find a vector _x_ that minimizes  
   
-(P0)         min<sub>_x_</sub> ||_A_*_x_-_y_||<sub>2</sub> s.t. ||_x_||<sub>0</sub> $$\leq$$ _k_.  
+(P0)         min<sub>_x_</sub> ||_A_*_x_-_y_||<sub>2</sub> s.t. ||_x_||<sub>0</sub> <= _k_.  
   
 The algorithm is based on [1].  
 
@@ -23,28 +23,9 @@ For more details, see the main documentation.
 
 Requirements
 ------------
-**Mosek**  
-This program requires the _Mosek_ optimization solver.  
-https://www.mosek.com/downloads/  
-  
-Mosek requires a _user licence_. A personal academic licence can be requested [here](https://www.mosek.com/license/request/personal-academic/),  
-and is normally sent immediately by email.  
+**MATLAB**  
+Matlab version 2018b is required, but the code my run on earlier versions.
 
-The attached `mosek.lic` file should be placed in `<home>/mosek`, where  
-`<home>` is the user's home directory on the computer. For example:  
-* Windows: `c:\users\<userid>\mosek\mosek.lic`  
-* Unix / Linux / OS X: `/home/<userid>/mosek/mosek.lic`  
-
-Then add Mosek's `toolbox/r2015aom` subdirectory to the Matlab path. e.g.,  
-`>> addpath('C:\Program Files\Mosek\9.1\toolbox\r2015aom');`
-
-**YALMIP**  
-The code that compares our method with other methods requires the _YALMIP_ modeling toolbox.  
-YALMIP can be downloaded [here](https://yalmip.github.io/download/) and placed in an arbitrary folder.  
-
-All subdirectories of YALMIP should be added to the Matlab path.  
-For example, if YALMIP is extracted to `C:\YALMIP`,  
-`>> addpath(genpath('C:\YALMIP'));`
 
 
 Input & output arguments
@@ -60,15 +41,15 @@ Input & output arguments
 
 Files
 -----
-`sparse_approx_gsm_v1_10.m`    - Main Matlab function  
-`sparse_approx_gsm_v1_10.txt`  - Main documentation  
+`sparse_approx_gsm_v1_22.m`    - Main Matlab function  
+`sparse_approx_gsm_v1_22.txt`  - Main documentation  
 `README.md`                    - This readme  
 
-`runExample.m`              - A script with a simple usage example  
-`runCompareTrimmedLasso.m`  - A comparison between GSM and the DC-Programming and ADMM methods described in [2].
+`runExampleSmall.m`         
+`runExampleMedium.m`        
+`runExampleLarge.m`         - Usage examples with matrices of different sizes
                           
-`./utils`       - Used by the main program. Required to be in the Matlab path.  
-`./comparison`  - Required only for comparing GSM with other methods.
+`./gsm`         - MEX C code to calculate the Generalized Soft-Min. Required in the Matlab path.  
 
 References
 ----------
